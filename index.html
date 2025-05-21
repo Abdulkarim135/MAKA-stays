@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maka Stays</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+    body { background-color: #0f2321; color: white; }
+    header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: #0f2321; }
+    .logo { height: 50px; }
+    nav a { color: white; margin-left: 25px; text-decoration: none; font-weight: 500; }
+    nav a:hover { color: #d1a552; }
+    .hero, .section { padding: 60px 40px; }
+    .hero { display: flex; flex-wrap: wrap; align-items: center; gap: 40px; }
+    .hero-text { flex: 1; }
+    .hero-text h1 { font-size: 2.5rem; margin-bottom: 20px; }
+    .hero-text p { margin-bottom: 30px; color: #bfbfbf; }
+    .btn { background-color: #d1a552; color: #0f2321; padding: 12px 24px; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; }
+    .hero-img { flex: 1; max-width: 600px; }
+    .hero-img img { width: 100%; border-radius: 12px; }
+    .testimonial { margin-top: 10px; font-size: 0.9rem; color: #ccc; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; }
+    .section-light { background-color: #fff; color: #0f2321; }
+    .section-dark { background-color: #0f2321; color: white; }
+    .section h2 { font-size: 2rem; margin-bottom: 20px; text-align: center; }
+    .section p { max-width: 800px; margin: 0 auto 40px auto; text-align: center; }
+    .faq-item { max-width: 700px; margin: 0 auto 20px auto; background: #122e2c; padding: 15px; border-radius: 8px; }
+    .faq-item strong { color: #d1a552; display: block; margin-bottom: 5px; }
+    footer { background-color: #0f2321; color: white; text-align: center; padding: 20px; font-size: 0.9rem; }
+    @media (max-width: 768px) { .hero { flex-direction: column; } }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="Maka Stays Logo" class="logo">
+    <nav>
+      <a href="#about">About</a>
+      <a href="#properties">Properties</a>
+      <a href="#faqs">FAQs</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-text">
+      <p>Retreat - Indulge - Relax</p>
+      <h1>Live the Art of Luxury, Wherever You Roam</h1>
+      <p>Maka Stays delivers hand-curated homes, concierge-level service, and memories that linger longer.</p>
+      <button class="btn">Stay with us</button>
+    </div>
+    <div class="hero-img">
+      <img src="https://source.unsplash.com/featured/?luxury-apartment" alt="Luxury Apartment">
+      <div class="testimonial">
+        ⭐⭐⭐⭐⭐ "From the moment we stepped through the door, Maka Stays felt like a rental and more like being handed the keys to our own private boutique hotel."
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section section-light">
+    <h2>Luxury Stay Specialists</h2>
+    <p>Founded by a pair of lifelong travelers who craved the soul of a boutique hotel and the privacy of a home, we curate an ever-growing collection of residences that turn ordinary trips into extraordinary chapters.</p>
+  </section>
+
+  <section id="properties" class="section section-dark">
+    <h2>Our Properties</h2>
+    <p>We offer a diverse collection of stylish, cozy, and unique homes across top destinations. Whether you're looking for a weekend escape or an extended stay, Maka Stays has something perfect for you.</p>
+  </section>
+
+  <section id="faqs" class="section section-light">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <strong>What is Maka Stays?</strong>
+      Maka Stays is a premium home rental service providing curated luxury accommodations.
+    </div>
+    <div class="faq-item">
+      <strong>How do I book a stay?</strong>
+      You can book directly through our upcoming booking platform or contact us via email.
+    </div>
+    <div class="faq-item">
+      <strong>Are the properties serviced?</strong>
+      Yes, we offer concierge-level service for all our guests.
+    </div>
+  </section>
+
+  <section id="contact" class="section section-dark">
+    <h2>Contact Us</h2>
+    <p>Have questions or want to partner with us? Reach out at <a href="mailto:Maka.Mgmt4@gmail.com" style="color: #d1a552; text-decoration: none;">Maka.Mgmt4@gmail.com</a></p>
+  </section>
+
+  <footer>
+    &copy; 2025 Maka Stays. All rights reserved.
+  </footer>
+</body>
+</html>
