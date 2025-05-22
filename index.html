@@ -3,39 +3,435 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Maka Stays</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>Maka Stays - Premium Airbnb Management & Luxury Rentals</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-    body { background-color: #0f2321; color: white; }
-    header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: #0f2321; }
-    .logo { height: 50px; }
-    nav a { color: white; margin-left: 25px; text-decoration: none; font-weight: 500; }
+    body { background-color: #0f2321; color: white; line-height: 1.6; }
+    
+    /* Header */
+    header { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      padding: 20px 40px; 
+      background-color: #0f2321; 
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+    .logo-container { display: flex; align-items: center; gap: 16px; }
+    .logo-symbol { display: flex; gap: 6px; height: 60px; }
+    .logo-shape { width: 30px; height: 100%; clip-path: polygon(0 0, 100% 20%, 100% 100%, 0 80%); }
+    .shape1 { background-color: white; clip-path: polygon(0 0, 100% 20%, 100% 100%, 0 80%, 10% 75%, 10% 25%, 0 20%); }
+    .shape2 { background-color: #d1a552; }
+    .shape3 { background-color: white; }
+    .shape4 { background-color: #d1a552; }
+    .logo-text { font-size: 1.6rem; font-weight: 700; color: #d1a552; letter-spacing: 2px; }
+    nav a { color: white; margin-left: 25px; text-decoration: none; font-weight: 500; transition: color 0.3s; }
     nav a:hover { color: #d1a552; }
-    .hero, .section { padding: 60px 40px; }
-    .hero { display: flex; flex-wrap: wrap; align-items: center; gap: 40px; }
-    .hero-text { flex: 1; }
-    .hero-text h1 { font-size: 2.5rem; margin-bottom: 20px; }
-    .hero-text p { margin-bottom: 30px; color: #bfbfbf; }
-    .btn { background-color: #d1a552; color: #0f2321; padding: 12px 24px; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; }
-    .hero-img { flex: 1; max-width: 600px; }
-    .hero-img img { width: 100%; border-radius: 12px; }
-    .testimonial { margin-top: 10px; font-size: 0.9rem; color: #ccc; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; }
+    
+    /* Buttons */
+    .btn {
+      background-color: transparent;
+      color: #d1a552;
+      padding: 12px 24px;
+      border: 2px solid #d1a552;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .btn:hover {
+      background-color: #d1a552;
+      color: #0f2321;
+      transform: translateY(-2px);
+    }
+    .btn-primary {
+      background-color: #d1a552;
+      color: #0f2321;
+    }
+    .btn-primary:hover {
+      background-color: #b8923d;
+      transform: translateY(-2px);
+    }
+    .btn .arrow {
+      background-color: #a57f2c;
+      color: white;
+      border-radius: 50%;
+      padding: 5px 7px;
+      font-size: 0.8rem;
+    }
+    
+    /* Sections */
+    .hero, .section { padding: 80px 40px; }
+    .hero { 
+      display: flex; 
+      flex-wrap: wrap; 
+      align-items: center; 
+      gap: 60px; 
+      min-height: 80vh;
+    }
+    .hero-text { flex: 1; min-width: 400px; }
+    .hero-text .tagline { 
+      color: #d1a552; 
+      font-weight: 600; 
+      font-size: 1.1rem; 
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .hero-text h1 { 
+      font-size: 3.2rem; 
+      margin-bottom: 25px; 
+      line-height: 1.2;
+      background: linear-gradient(135deg, #ffffff, #d1a552);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-text p { margin-bottom: 35px; color: #bfbfbf; font-size: 1.1rem; }
+    .hero-buttons { display: flex; gap: 20px; flex-wrap: wrap; }
+    
+    .hero-img { 
+      flex: 1; 
+      max-width: 550px; 
+      border-radius: 20px; 
+      overflow: hidden; 
+      position: relative;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+    .hero-img img { width: 100%; height: auto; border-radius: 20px; }
+    .testimonial {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      background: rgba(15, 35, 33, 0.95);
+      border: 2px solid #d1a552;
+      border-radius: 12px;
+      padding: 20px;
+      font-size: 0.95rem;
+      color: white;
+      backdrop-filter: blur(10px);
+    }
+    
+    /* Stats Section */
+    .stats-section {
+      background: linear-gradient(135deg, #d1a552, #b8923d);
+      color: #0f2321;
+      padding: 60px 40px;
+    }
+    .stats-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .stat-item {
+      text-align: center;
+    }
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .stat-label {
+      font-size: 1.1rem;
+      font-weight: 600;
+      opacity: 0.9;
+    }
+    
+    /* Services Section */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+    .service-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(209, 165, 82, 0.3);
+      border-radius: 16px;
+      padding: 30px;
+      transition: all 0.3s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-5px);
+      border-color: #d1a552;
+      box-shadow: 0 10px 30px rgba(209, 165, 82, 0.2);
+    }
+    .service-icon {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    .service-card h3 {
+      color: #d1a552;
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+    }
+    
+    /* Property Management Process */
+    .process-section {
+      background-color: #fff;
+      color: #0f2321;
+    }
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-top: 50px;
+    }
+    .process-step {
+      text-align: center;
+      position: relative;
+    }
+    .step-number {
+      background: #d1a552;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0 auto 20px auto;
+    }
+    .process-step h3 {
+      margin-bottom: 15px;
+      color: #0f2321;
+    }
+    
+    /* Pricing Section */
+    .pricing-section {
+      background: linear-gradient(135deg, #0f2321, #1a3d3a);
+    }
+    .pricing-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+    .pricing-card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 2px solid rgba(209, 165, 82, 0.3);
+      border-radius: 20px;
+      padding: 40px 30px;
+      text-align: center;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    .pricing-card.featured {
+      border-color: #d1a552;
+      transform: scale(1.05);
+    }
+    .pricing-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      border-color: #d1a552;
+    }
+    .pricing-card.featured:hover {
+      transform: translateY(-10px) scale(1.07);
+    }
+    .plan-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #d1a552;
+    }
+    .plan-price {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .plan-features {
+      list-style: none;
+      margin-bottom: 30px;
+    }
+    .plan-features li {
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .popular-badge {
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #d1a552;
+      color: #0f2321;
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    
+    /* Common Section Styles */
     .section-light { background-color: #fff; color: #0f2321; }
     .section-dark { background-color: #0f2321; color: white; }
-    .section h2 { font-size: 2rem; margin-bottom: 20px; text-align: center; }
-    .section p { max-width: 800px; margin: 0 auto 40px auto; text-align: center; }
-    .faq-item { max-width: 700px; margin: 0 auto 20px auto; background: #122e2c; padding: 15px; border-radius: 8px; }
-    .faq-item strong { color: #d1a552; display: block; margin-bottom: 5px; }
-    footer { background-color: #0f2321; color: white; text-align: center; padding: 20px; font-size: 0.9rem; }
-    @media (max-width: 768px) { .hero { flex-direction: column; } }
+    .section h2 { 
+      font-size: 2.5rem; 
+      margin-bottom: 20px; 
+      text-align: center;
+      font-weight: 700;
+    }
+    .section p { 
+      max-width: 800px; 
+      margin: 0 auto 40px auto; 
+      text-align: center; 
+      font-size: 1.1rem;
+    }
+    
+    /* Image Slider */
+    .image-slider {
+      display: flex;
+      gap: 20px;
+      margin-top: 40px;
+      overflow: hidden;
+      position: relative;
+    }
+    .slider-track {
+      display: flex;
+      animation: scroll 40s linear infinite;
+    }
+    .slider-track img {
+      width: 300px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-right: 20px;
+    }
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    
+    /* FAQ */
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      overflow: hidden;
+    }
+    .faq-question {
+      background: #f8f9fa;
+      padding: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-answer {
+      padding: 20px;
+      background: white;
+      display: none;
+    }
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+    
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(135deg, #d1a552, #b8923d);
+      color: #0f2321;
+      text-align: center;
+      padding: 80px 40px;
+    }
+    .cta-section h2 {
+      color: #0f2321;
+      margin-bottom: 20px;
+    }
+    .cta-section p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+    
+    /* Footer */
+    footer { 
+      background-color: #0a1e1c; 
+      color: white; 
+      padding: 60px 40px 30px; 
+    }
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    .footer-section h3 {
+      color: #d1a552;
+      margin-bottom: 20px;
+      font-size: 1.2rem;
+    }
+    .footer-section a {
+      color: #bfbfbf;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 10px;
+    }
+    .footer-section a:hover {
+      color: #d1a552;
+    }
+    .footer-bottom {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid #333;
+      color: #888;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero { 
+        flex-direction: column; 
+        padding: 40px 20px;
+        text-align: center;
+      }
+      .hero-text { min-width: auto; }
+      .hero-text h1 { font-size: 2.5rem; }
+      .hero-buttons { justify-content: center; }
+      .slider-track img { width: 90%; height: auto; }
+      .logo-container { flex-direction: column; align-items: flex-start; gap: 4px; }
+      header { 
+        flex-direction: column; 
+        gap: 20px; 
+        padding: 15px 20px;
+      }
+      nav { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+      nav a { margin-left: 0; }
+      .section { padding: 60px 20px; }
+      .stats-container { gap: 30px; }
+      .pricing-card.featured { transform: none; }
+    }
   </style>
 </head>
 <body>
   <header>
-    <img src="logo.png" alt="Maka Stays Logo" class="logo">
+    <div class="logo-container">
+      <div class="logo-symbol">
+        <div class="logo-shape shape1"></div>
+        <div class="logo-shape shape2"></div>
+        <div class="logo-shape shape3"></div>
+        <div class="logo-shape shape4"></div>
+      </div>
+      <div class="logo-text">MAKA STAYS</div>
+    </div>
     <nav>
       <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#pricing">Pricing</a>
       <a href="#properties">Properties</a>
       <a href="#faqs">FAQs</a>
       <a href="#contact">Contact</a>
@@ -44,52 +440,293 @@
 
   <section class="hero">
     <div class="hero-text">
-      <p>Retreat - Indulge - Relax</p>
-      <h1>Live the Art of Luxury, Wherever You Roam</h1>
-      <p>Maka Stays delivers hand-curated homes, concierge-level service, and memories that linger longer.</p>
-      <button class="btn">Stay with us</button>
+      <p class="tagline">Premium Airbnb Management</p>
+      <h1>Maximize Your Rental Income While We Handle Everything</h1>
+      <p>Professional Airbnb management that transforms your property into a profitable, hassle-free investment. From guest screening to 24/7 support, we deliver exceptional experiences that earn 5-star reviews and premium rates.</p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn btn-primary">Get Free Analysis</a>
+        <a href="#pricing" class="btn">View Pricing <span class="arrow">→</span></a>
+      </div>
     </div>
     <div class="hero-img">
-      <img src="https://source.unsplash.com/featured/?luxury-apartment" alt="Luxury Apartment">
+      <img src="/api/placeholder/550/400" alt="Luxury Managed Property">
       <div class="testimonial">
-        ⭐⭐⭐⭐⭐ "From the moment we stepped through the door, Maka Stays felt like a rental and more like being handed the keys to our own private boutique hotel."
+        ⭐⭐⭐⭐⭐ "Maka Stays increased our revenue by 40% in the first 6 months. Their attention to detail and guest communication is outstanding. Best decision we made for our investment property!"
+        <br><strong>- Sarah & Mike T., Property Owners</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats-section">
+    <div class="stats-container">
+      <div class="stat-item">
+        <div class="stat-number">40%</div>
+        <div class="stat-label">Average Revenue Increase</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">4.9★</div>
+        <div class="stat-label">Average Guest Rating</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">150+</div>
+        <div class="stat-label">Properties Managed</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">24/7</div>
+        <div class="stat-label">Guest Support</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="section section-dark">
+    <h2>Complete Airbnb Management Services</h2>
+    <p>We handle every aspect of your short-term rental business so you can enjoy passive income without the stress.</p>
+    
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🏠</div>
+        <h3>Property Setup & Optimization</h3>
+        <p>Professional photography, compelling listings, competitive pricing strategy, and interior design consultation to maximize bookings.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📅</div>
+        <h3>Booking & Calendar Management</h3>
+        <p>Multi-platform listing management, dynamic pricing optimization, and strategic calendar coordination across all booking channels.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💬</div>
+        <h3>Guest Communication</h3>
+        <p>24/7 guest support, instant response times, check-in coordination, and personalized guest experience management.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🧹</div>
+        <h3>Cleaning & Maintenance</h3>
+        <p>Professional cleaning between stays, regular maintenance checks, inventory management, and emergency repair coordination.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📊</div>
+        <h3>Revenue Optimization</h3>
+        <p>Advanced analytics, market research, seasonal pricing strategies, and detailed monthly financial reporting.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🛡️</div>
+        <h3>Risk Management</h3>
+        <p>Guest screening, property protection, insurance coordination, and legal compliance to safeguard your investment.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="process" class="section process-section">
+    <h2>How We Transform Your Property</h2>
+    <p>Our proven 4-step process turns your property into a top-performing Airbnb rental.</p>
+    
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="step-number">1</div>
+        <h3>Property Assessment</h3>
+        <p>We analyze your property's potential, local market conditions, and provide a detailed revenue projection with optimization recommendations.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-number">2</div>
+        <h3>Professional Setup</h3>
+        <p>Professional photography, compelling listing creation, pricing strategy implementation, and interior enhancement recommendations.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-number">3</div>
+        <h3>Launch & Optimize</h3>
+        <p>Multi-platform listing launch, guest communication setup, cleaning team coordination, and initial performance monitoring.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-number">4</div>
+        <h3>Ongoing Management</h3>
+        <p>Continuous optimization, regular reporting, maintenance coordination, and proactive revenue maximization strategies.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing" class="section pricing-section">
+    <h2>Transparent Pricing Plans</h2>
+    <p>Choose the management level that fits your needs. No hidden fees, no surprises.</p>
+    
+    <div class="pricing-cards">
+      <div class="pricing-card">
+        <div class="plan-name">Essential</div>
+        <div class="plan-price">15%<span style="font-size: 1rem;"> of revenue</span></div>
+        <ul class="plan-features">
+          <li>✓ Listing management</li>
+          <li>✓ Guest communication</li>
+          <li>✓ Cleaning coordination</li>
+          <li>✓ Basic pricing optimization</li>
+          <li>✓ Monthly reporting</li>
+        </ul>
+        <a href="#contact" class="btn">Get Started</a>
+      </div>
+      
+      <div class="pricing-card featured">
+        <div class="popular-badge">Most Popular</div>
+        <div class="plan-name">Premium</div>
+        <div class="plan-price">20%<span style="font-size: 1rem;"> of revenue</span></div>
+        <ul class="plan-features">
+          <li>✓ Everything in Essential</li>
+          <li>✓ Professional photography</li>
+          <li>✓ Dynamic pricing optimization</li>
+          <li>✓ 24/7 guest support</li>
+          <li>✓ Maintenance coordination</li>
+          <li>✓ Revenue optimization consulting</li>
+        </ul>
+        <a href="#contact" class="btn btn-primary">Get Started</a>
+      </div>
+      
+      <div class="pricing-card">
+        <div class="plan-name">Full-Service</div>
+        <div class="plan-price">25%<span style="font-size: 1rem;"> of revenue</span></div>
+        <ul class="plan-features">
+          <li>✓ Everything in Premium</li>
+          <li>✓ Interior design consultation</li>
+          <li>✓ Multi-platform management</li>
+          <li>✓ Advanced analytics</li>
+          <li>✓ Dedicated account manager</li>
+          <li>✓ Emergency response service</li>
+        </ul>
+        <a href="#contact" class="btn">Get Started</a>
       </div>
     </div>
   </section>
 
   <section id="about" class="section section-light">
     <h2>Luxury Stay Specialists</h2>
-    <p>Founded by a pair of lifelong travelers who craved the soul of a boutique hotel and the privacy of a home, we curate an ever-growing collection of residences that turn ordinary trips into extraordinary chapters.</p>
+    <p>Founded by experienced hospitality professionals and real estate investors, we combine boutique hotel standards with smart technology to maximize your property's potential. Our team manages over 150 properties across prime locations, consistently achieving above-market rates and exceptional guest satisfaction.</p>
+    <div class="image-slider">
+      <div class="slider-track">
+        <img src="/mnt/data/cabin-couple.png" alt="Couple in Cabin">
+        <img src="/mnt/data/cabin-room.png" alt="Cabin Room View">
+        <img src="/mnt/data/Family-room.png" alt="Family Dining">
+        <img src="/mnt/data/forest-retreat.png" alt="Forest Retreat">
+        <img src="/mnt/data/Gaming-room.png" alt="Gaming Room">
+        <img src="/mnt/data/living-room.png" alt="Cozy Living Room">
+        <img src="/mnt/data/Modern-room.png" alt="Modern Minimalist Room">
+      </div>
+    </div>
   </section>
 
   <section id="properties" class="section section-dark">
-    <h2>Our Properties</h2>
-    <p>We offer a diverse collection of stylish, cozy, and unique homes across top destinations. Whether you're looking for a weekend escape or an extended stay, Maka Stays has something perfect for you.</p>
+    <h2>Our Managed Properties</h2>
+    <p>We specialize in premium properties across top destinations, from urban penthouses to mountain retreats. Every property in our portfolio is optimized for maximum revenue and guest satisfaction.</p>
   </section>
 
   <section id="faqs" class="section section-light">
     <h2>Frequently Asked Questions</h2>
-    <div class="faq-item">
-      <strong>What is Maka Stays?</strong>
-      Maka Stays is a premium home rental service providing curated luxury accommodations.
+    <div class="faq-container">
+      <div class="faq-item">
+        <div class="faq-question">
+          What makes Maka Stays different from other management companies?
+          <span>+</span>
+        </div>
+        <div class="faq-answer">
+          We combine boutique hospitality expertise with advanced revenue optimization technology. Our team includes former hotel managers and real estate professionals who understand both guest experience and investment returns. We also provide transparent reporting and maintain the highest standards for property care.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          How quickly can you start managing my property?
+          <span>+</span>
+        </div>
+        <div class="faq-answer">
+          After our initial assessment, we can typically have your property live and taking bookings within 2-3 weeks. This includes professional photography, listing optimization, and setting up all operational systems.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          Do you guarantee increased revenue?
+          <span>+</span>
+        </div>
+        <div class="faq-answer">
+          While we can't guarantee specific amounts due to market variables, our properties average 40% higher revenue compared to self-managed listings. We provide detailed market analysis and revenue projections during our initial consultation.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          What areas do you serve?
+          <span>+</span>
+        </div>
+        <div class="faq-answer">
+          We currently manage properties in major metropolitan areas and popular vacation destinations. Contact us to discuss your specific location and see if we can provide service in your area.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          How do you handle property maintenance and emergencies?
+          <span>+</span>
+        </div>
+        <div class="faq-answer">
+          We have established relationships with trusted local contractors and maintenance professionals. For emergencies, we provide 24/7 response coordination. All maintenance expenses are pre-approved with you and documented in your monthly reports.
+        </div>
+      </div>
     </div>
-    <div class="faq-item">
-      <strong>How do I book a stay?</strong>
-      You can book directly through our upcoming booking platform or contact us via email.
-    </div>
-    <div class="faq-item">
-      <strong>Are the properties serviced?</strong>
-      Yes, we offer concierge-level service for all our guests.
-    </div>
+  </section>
+
+  <section class="cta-section">
+    <h2>Ready to Maximize Your Rental Income?</h2>
+    <p>Get a free property analysis and discover your revenue potential with professional Airbnb management.</p>
+    <a href="#contact" class="btn" style="background: #0f2321; color: #d1a552; border-color: #0f2321;">Schedule Free Consultation</a>
   </section>
 
   <section id="contact" class="section section-dark">
-    <h2>Contact Us</h2>
-    <p>Have questions or want to partner with us? Reach out at <a href="mailto:Maka.Mgmt4@gmail.com" style="color: #d1a552; text-decoration: none;">Maka.Mgmt4@gmail.com</a></p>
+    <h2>Get Started Today</h2>
+    <p>Ready to transform your property into a profitable, stress-free investment? Contact our team for a free consultation and personalized revenue analysis.</p>
+    <div style="text-align: center; margin-top: 30px;">
+      <p style="font-size: 1.2rem; margin-bottom: 10px;">📧 <a href="mailto:Maka.Mgmt4@gmail.com" style="color: #d1a552; text-decoration: none;">Maka.Mgmt4@gmail.com</a></p>
+      <p style="font-size: 1.2rem; margin-bottom: 20px;">📞 <a href="tel:+1234567890" style="color: #d1a552; text-decoration: none;">(123) 456-7890</a></p>
+      <a href="mailto:Maka.Mgmt4@gmail.com?subject=Free Property Analysis Request" class="btn btn-primary">Request Free Analysis</a>
+    </div>
   </section>
 
   <footer>
-    &copy; 2025 Maka Stays. All rights reserved.
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Services</h3>
+        <a href="#services">Airbnb Management</a>
+        <a href="#services">Property Optimization</a>
+        <a href="#services">Revenue Maximization</a>
+        <a href="#services">Guest Experience</a>
+      </div>
+      <div class="footer-section">
+        <h3>Company</h3>
+        <a href="#about">About Us</a>
+        <a href="#process">Our Process</a>
+        <a href="#properties">Portfolio</a>
+        <a href="#faqs">FAQ</a>
+      </div>
+      <div class="footer-section">
+        <h3>Contact</h3>
+        <a href="mailto:Maka.Mgmt4@gmail.com">Email Us</a>
+        <a href="tel:+1234567890">Call Us</a>
+        <a href="#contact">Free Consultation</a>
+      </div>
+      <div class="footer-section">
+        <h3>Resources</h3>
+        <a href="#">Owner Portal</a>
+        <a href="#">Market Reports</a>
+        <a href="#">Investment Guide</a>
+        <a href="#">Legal Compliance</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2025 Maka Stays. All rights reserved. | Professional Airbnb Management & Luxury Rental Services
+    </div>
   </footer>
+
+  <script>
+    // FAQ Toggle Functionality
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', () => {
+        const faqItem = question.parentElement;
+        const isActive = faqItem.classList.contains('active');
+        
+        // Close all FAQ items
+        document.querySelectorAll('.faq-item').forEach(item => {
+          item.classList.remove('active');
+          item.querySelector('.faq-question span').textContent = '+';
+      </script>
 </body>
 </html>
