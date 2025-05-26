@@ -718,17 +718,26 @@
     </div>
   </footer>
 
-  <script>
+<script>
     // FAQ Toggle Functionality
     document.querySelectorAll('.faq-question').forEach(question => {
       question.addEventListener('click', () => {
         const faqItem = question.parentElement;
         const isActive = faqItem.classList.contains('active');
         
-        // Close all FAQ items
+        // Close all FAQ items first
         document.querySelectorAll('.faq-item').forEach(item => {
           item.classList.remove('active');
           item.querySelector('.faq-question span').textContent = '+';
-      </script>
+        });
+        
+        // If this item wasn't active, open it
+        if (!isActive) {
+          faqItem.classList.add('active');
+          question.querySelector('span').textContent = '−';
+        }
+      });
+    });
+</script>
 </body>
 </html>
