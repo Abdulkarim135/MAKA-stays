@@ -21,14 +21,14 @@
       z-index: 100;
       backdrop-filter: blur(10px);
     }
-    .logo-container { display: flex; align-items: center; gap: 16px; }
-    .logo-symbol { display: flex; gap: 6px; height: 60px; }
-    .logo-shape { width: 30px; height: 100%; clip-path: polygon(0 0, 100% 20%, 100% 100%, 0 80%); }
-    .shape1 { background-color: white; clip-path: polygon(0 0, 100% 20%, 100% 100%, 0 80%, 10% 75%, 10% 25%, 0 20%); }
-    .shape2 { background-color: #d1a552; }
-    .shape3 { background-color: white; }
-    .shape4 { background-color: #d1a552; }
-    .logo-text { font-size: 1.6rem; font-weight: 700; color: #d1a552; letter-spacing: 2px; }
+.logo-container { 
+  display: flex; 
+  align-items: center; 
+}
+.logo-image {
+  height: 60px;  /* Adjust this number to make logo bigger/smaller */
+  width: auto;   /* Keeps the proportions correct */
+}
     nav a { color: white; margin-left: 25px; text-decoration: none; font-weight: 500; transition: color 0.3s; }
     nav a:hover { color: #d1a552; }
     
@@ -418,15 +418,9 @@
 </head>
 <body>
   <header>
-    <div class="logo-container">
-      <div class="logo-symbol">
-        <div class="logo-shape shape1"></div>
-        <div class="logo-shape shape2"></div>
-        <div class="logo-shape shape3"></div>
-        <div class="logo-shape shape4"></div>
-      </div>
-      <div class="logo-text">MAKA STAYS</div>
-    </div>
+<div class="logo-container">
+  <img src="logo.png" alt="Maka Stays Logo" class="logo-image">
+</div>
     <nav>
       <a href="#about">About</a>
       <a href="#services">Services</a>
